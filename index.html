@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASKI ENGINEERING - Consultoría de Puesta en Marcha Operativa, Eficiencia de Procesos, Marketing y Transformación Digital para PYMEs.">
+    <title>ASKI ENGINEERING | Consultoría Operativa y Digital</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* PALETA DE COLORES: Industrial Steel & Electric Cyan */
+        :root {
+            --bg-dark: #0F172A;         /* Azul Noche / Pizarra Oscuro */
+            --bg-card: #1E293B;        /* Gris Acero Azulado */
+            --accent-cyan: #06B6D4;     /* Cían Eléctrico */
+            --accent-orange: #38BDF8;   /* Azul Cielo / Acento Secundario */
+            --accent-violet: #64748B;   /* Gris Neutro */
+            --whatsapp-green: #25D366;  /* Verde WhatsApp */
+            --whatsapp-dark: #128C7E;   /* Verde Oscuro WhatsApp */
+            --facebook-blue: #1877F2;   /* Azul Facebook */
+            --text-main: #F8FAFC;       /* Blanco / Gris Muy Claro */
+            --text-muted: #94A3B8;      /* Gris Medio Lectura */
+            --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            --gradient-btn: linear-gradient(90deg, #06B6D4 0%, #0284C7 100%);
+            --gradient-whatsapp: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+            --gradient-facebook: linear-gradient(90deg, #1877F2 0%, #0B51B3 100%);
+            --gradient-instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --gradient-accent: linear-gradient(90deg, #06B6D4 0%, #38BDF8 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ESTILOS DE IMÁGENES REUTILIZABLES */
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 16px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 1.5px;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            color: var(--accent-cyan);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* MENÚ DE NAVEGACIÓN Y HAMBURGUESA */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-btn {
+            background: var(--gradient-btn);
+            color: #ffffff !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Botón Menú Hamburguesa para Móvil */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-cyan);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            padding: 160px 8% 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-image {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-height: 480px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 18px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: var(--accent-cyan);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* CAJITAS TIPO WHATSAPP / REDES SOCIALES EN HERO */
+        .social-boxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .social-box:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.25);
+        }
+
+        .social-box-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .social-box-icon.wa { background: var(--gradient-whatsapp); }
+        .social-box-icon.ig { background: var(--gradient-instagram); }
+        .social-box-icon.fb { background: var(--gradient-facebook); }
+
+        .social-box-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-box-text span {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .social-box-text strong {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--gradient-btn);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 6px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: var(--gradient-whatsapp);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* GENERAL SECTIONS */
+        section {
+            padding: 100px 8%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title small {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 800;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        .section-title p {
+            max-width: 750px;
+            margin: 15px auto 0;
+            color: var(--text-muted);
+            font-size: 17px;
+        }
+
+        /* PRESENTACIÓN Y NOSOTROS */
+        .presentation {
+            background: #0B1120;
+            width: 100%;
+            padding: 100px 8%;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .presentation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 45px;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .presentation-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .presentation-image-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .presentation-image-group img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #1e293b;
+        }
+
+        .presentation-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .presentation-text h3 {
+            font-size: 1.6rem;
+            color: #38bdf8;
+            font-weight: 800 !important;
+            margin-bottom: 18px;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .presentation-text h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #38bdf8;
+            border-radius: 2px;
+        }
+
+        .presentation-text p {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .mv-card,
+        .stats.stats-custom-color {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center !important;
+            width: 100%;
+            max-width: 500px;
+            margin: 15px auto !important;
+            box-sizing: border-box;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mv-card h4 {
+            color: #38bdf8;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 800 !important;
+            text-transform: uppercase;
+            text-align: center !important;
+        }
+
+        .mv-card p {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            text-align: center !important;
+            margin: 0 auto !important;
+        }
+
+        .stats.stats-custom-color {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .stats.stats-custom-color .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stats.stats-custom-color .stat h3 {
+            color: #38bdf8;
+            font-size: 1.75rem;
+            font-weight: 800 !important;
+            margin-bottom: 4px;
+        }
+
+        .stats.stats-custom-color .stat p {
+            color: #ffffff !important;
+            font-size: 0.88rem;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            width: 100%;
+            max-width: 500px;
+            margin: 15px auto 0 auto;
+        }
+
+        /* PROBLEMAS DEL SECTOR CON IMÁGENES */
+        .problem {
+            background: var(--bg-dark);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .problem-card {
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-4px);
+        }
+
+        .problem-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .problem-card-body {
+            padding: 25px;
+        }
+
+        .problem-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* SERVICIOS CON IMÁGENES */
+        .services {
+            background: #0B1120;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .service-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+        }
+
+        .service-card h3 {
+            margin: 5px 0 10px;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .service-card h4 {
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .service-card li {
+            margin: 12px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 15px;
+        }
+
+        .service-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* MÉTODO P.A.S.O.D. */
+        .paso {
+            background: var(--bg-dark);
+        }
+
+        .paso-banner {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .paso-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .paso-card {
+            padding: 25px 15px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .paso-letter {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .paso-card h3 {
+            margin-bottom: 10px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .paso-card p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* OPORTUNIDAD & GARANTÍA */
+        .opportunity {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: center;
+        }
+
+        .opportunity-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .opportunity h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .opportunity p {
+            font-size: 18px;
+            color: var(--text-muted);
+        }
+
+        .quote {
+            margin: 35px 0;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 8px;
+            font-size: clamp(18px, 3vw, 22px);
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        /* CLIENTES CON IMÁGENES */
+        .clients {
+            background: #0B1120;
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .client-card {
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .client-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .client-card-body {
+            padding: 30px;
+        }
+
+        .client-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .client-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* CTA CON CAJITAS DE CONTACTO Y REDES SOCIALES */
+        .cta {
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.92), rgba(11, 17, 32, 0.96)), 
+                        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            text-align: center;
+            color: #fff;
+            padding: 100px 8%;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            font-size: 19px;
+            color: var(--text-muted);
+        }
+
+        .contact-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            background: rgba(30, 41, 59, 0.95);
+        }
+
+        .contact-card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .contact-card-icon.wa { background: var(--gradient-whatsapp); }
+        .contact-card-icon.ig { background: var(--gradient-instagram); }
+        .contact-card-icon.fb { background: var(--gradient-facebook); }
+        .contact-card-icon.tel { background: var(--gradient-btn); }
+        .contact-card-icon.mail { background: linear-gradient(90deg, #64748B 0%, #334155 100%); }
+
+        .contact-card-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .contact-card-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            word-break: break-all;
+        }
+
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--whatsapp-green);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.7);
+            background-color: var(--whatsapp-dark);
+        }
+
+        .floating-whatsapp svg {
+            width: 34px;
+            height: 34px;
+            fill: currentColor;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #060913;
+            color: var(--text-muted);
+            padding: 50px 8% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .footer-logo span {
+            color: var(--accent-cyan);
+            font-size: 12px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 25px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* REGIONALIZACIÓN & MEDIA QUERIES (RESPONSIVE MOVIL) */
+        @media (max-width: 1024px) {
+            .paso-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                transition: 0.4s ease-in-out;
+                border-top: 1px solid rgba(6, 182, 212, 0.2);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu a {
+                font-size: 20px;
+            }
+
+            .hero, .presentation-grid, .client-grid, .mission-vision-grid { 
+                grid-template-columns: 1fr; 
+            }
+
+            .footer-content { 
+                flex-direction: column; 
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 60px 5%;
+            }
+
+            .paso-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-boxes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .stats.stats-custom-color {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-whatsapp {
+                width: 50px;
+                height: 50px;
+                bottom: 18px;
+                right: 18px;
+            }
+
+            .floating-whatsapp svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20deseo%20realizar%20una%20consulta%20sobre%20sus%20servicios." 
+       class="floating-whatsapp" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <a href="#inicio" class="logo-container">
+            <svg class="logo-img" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="30" r="5" fill="#38BDF8"/>
+                <circle cx="45" cy="15" r="5" fill="#38BDF8"/>
+                <circle cx="50" cy="50" r="5" fill="#38BDF8"/>
+                <line x1="20" y1="30" x2="45" y2="15" stroke="#38BDF8" stroke-width="2"/>
+                <line x1="20" y1="30" x2="50" y2="50" stroke="#38BDF8" stroke-width="2"/>
+                <line x1="45" y1="15" x2="50" y2="50" stroke="#38BDF8" stroke-width="2"/>
+
+                <path d="M55 55 V35 L70 45 V35 L85 45 V25 H105 V55 Z" fill="#64748B"/>
+                <path d="M75 30 H120 V20 L145 35 L120 50 V40 H75 Z" fill="#06B6D4"/>
+                <path d="M40 65 C40 62.2 42.2 60 45 60 C47.8 60 50 62.2 50 65 C50 67.8 47.8 70 45 70 C42.2 70 40 67.8 40 65 Z" fill="#06B6D4"/>
+                <path d="M45 55 L45 58 M45 72 L45 75 M35 65 L38 65 M52 65 L55 65 M38 58 L40 60 M50 70 L52 72 M38 72 L40 70 M50 60 L52 58" stroke="#06B6D4" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="logo-text">
+                ASKI ENGINEERING
+                <span>CONSULTORA OPERATIVA Y DIGITAL</span>
+            </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#metodo">Método P.A.S.O.D.</a></li>
+            <li><a href="#contacto" class="nav-btn">Agenda Diagnóstico</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- INICIO (HERO SECTION) -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="tag">Consultoría Operativa & Transformación Digital</span>
+
+            <h1>
+                Transformamos tu Capital en<br>
+                <span>Líneas Productivas Rentables.</span>
+            </h1>
+
+            <p>
+                Cerramos la brecha entre la disponibilidad de capital y la ejecución técnica. Acompañamos a nuevos inversionistas y PYMEs a estructurar plantas, eliminar fugas de dinero y digitalizar su operación con el <strong>Método P.A.S.O.D.</strong>
+            </p>
+
+            <!-- CAJITAS DE CONTACTO DIRECTO TIPO SOCIAL BOXES -->
+            <div class="social-boxes-grid">
+                
+                <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20consultar%20sobre%20sus%20servicios." target="_blank" class="social-box">
+                    <div class="social-box-icon wa">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    </div>
+                    <div class="social-box-text">
+                        <span>WhatsApp 1</span>
+                        <strong>71281472</strong>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/59169737253?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20consultar%20sobre%20sus%20servicios." target="_blank" class="social-box">
+                    <div class="social-box-icon wa">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    </div>
+                    <div class="social-box-text">
+                        <span>WhatsApp 2</span>
+                        <strong>69737253</strong>
+                    </div>
+                </a>
+
+                <a href="https://instagram.com/askienginnering?stkn=MTNncms0MXF5OWY0YQ%3D%3D" target="_blank" class="social-box">
+                    <div class="social-box-icon ig">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </div>
+                    <div class="social-box-text">
+                        <span>Instagram</span>
+                        <strong>@askienginnering</strong>
+                    </div>
+                </a>
+
+                <a href="https://www.facebook.com/share/19qpMnvVgC/" target="_blank" class="social-box">
+                    <div class="social-box-icon fb">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </div>
+                    <div class="social-box-text">
+                        <span>Facebook</span>
+                        <strong>Página Oficial</strong>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="ASKI Engineering e Industria" class="img-responsive">
+        </div>
+    </section>
+
+
+    <!-- PRESENTACIÓN Y NOSOTROS -->
+    <section class="presentation" id="nosotros">
+
+        <div class="section-title">
+            <small>¿Quiénes somos?</small>
+            <h2>Ingeniería Operativa Presencial y Cero Teoría</h2>
+            <p>
+                En <strong>ASKI ENGINEERING</strong> democratizamos la ingeniería industrial y la transformación digital. No entregamos reportes de escritorio; nos involucramos directamente en planta.
+            </p>
+        </div>
+
+        <div class="presentation-grid">
+
+            <div class="presentation-left-column">
+                
+                <div class="presentation-image-group">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&h=350&q=80" alt="Trabajo presencial en planta" class="img-responsive">
+                    <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&h=350&q=80" alt="Optimización de procesos industriales" class="img-responsive">
+                </div>
+
+                <div class="mv-card feature-highlight">
+                    <h4>Propuesta de Valor</h4>
+                    <p>Acompañamiento en planta 100% práctico y sin teoría vacía. Diseñamos soluciones a la medida para convertir la complejidad técnica en negocios rentables, seguros y escalables.</p>
+                </div>
+
+                <div class="stats stats-custom-color">
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Evaluación Neutral</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>P.A.S.O.D.</h3>
+                        <p>Metodología Propia</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="presentation-text">
+
+                <h3>Solucionamos la Brecha de Inversión</h3>
+
+                <p>
+                    Existe una gran acumulación de capital comercial en el mercado, pero la transición hacia proyectos productivos suele fracasar por falta de criterio técnico en la selección de maquinaria, dimensionamiento de planta y control de mermas.
+                </p>
+
+                <p>
+                    En <strong>ASKI ENGINEERING</strong> nos posicionamos como tu <strong>socio técnico neutral</strong>. Ayudamos a nuevos inversionistas a lanzar proyectos "Llave en Mano" y a empresas establecidas a frenar pérdidas operativas y acelerar su presencia digital.
+                </p>
+
+                <div class="mission-vision-grid">
+                    <div class="mv-card">
+                        <h4>Misión</h4>
+                        <p>Ser el aliado estratégico de emprendedores y PYMEs, ayudándolos a transformar ideas en negocios rentables mediante estrategias, procesos claros y gestión eficiente de sus recursos.</p>
+                    </div>
+
+                    <div class="mv-card">
+                        <h4>Visión</h4>
+                        <p>Ser la consultora referente para la creación y transformación de PYMEs, reconocida por convertir ideas en negocios sólidos e impulsar empresas competitivas.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; width: 100%;">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&h=350&q=80" alt="Ingenieros en control de planta" class="img-responsive">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PROBLEMAS DEL SECTOR -->
+    <section class="problem">
+
+        <div class="section-title">
+            <small>El Desafío</small>
+            <h2>¿Qué está frenando el crecimiento de tu negocio?</h2>
+            <p>
+                Estructurar un negocio productivo requiere más que dinero; exige gestión técnica especializada.
+            </p>
+        </div>
+
+        <div class="problem-grid">
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=600&q=80" alt="Maquinaria Sobredimensionada" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Maquinaria Sobredimensionada</h3>
+                    <p>
+                        Comprar equipos inadecuados por recomendación directa de vendedores de maquinaria sin una evaluación técnica neutral previa.
+                    </p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Fugas de dinero" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Fugas de Dinero Ocultas</h3>
+                    <p>
+                        Pérdidas continuas por mermas de material sin medir, tiempos muertos, desperdicios y compras de insumos sobrecostosas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=80" alt="Dependencia Empírica" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Dependencia Empírica</h3>
+                    <p>
+                        Falta de procesos estandarizados (SOPs). Operaciones que dependen de personas clave sin manuales ni registros claros.
+                    </p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Invisibilidad Digital" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Invisibilidad Digital</h3>
+                    <p>
+                        Marcas con gran potencial operativo pero estancadas comercialmente por no contar con ecosistema digital ni captación activa.
+                    </p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80" alt="Fugas Operativas Invisibles" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Fugas Operativas Invisibles</h3>
+                    <p>
+                        Pérdidas silenciosas de dinero generadas por micro-desperdicios de insumos, fallas de inventario y sobrecostos que no se reflejan en los balances tradicionales.
+                    </p>
+                </div>
+            </div>
+
+            <div class="problem-card">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Cuellos de Botella Invisibles" class="problem-card-img">
+                <div class="problem-card-body">
+                    <h3>Cuellos de Botella en Producción</h3>
+                    <p>
+                        Puntos de congestión en la línea productiva por desbalanceo de cargas, tiempos muertos desapercibidos y falta de sincronía entre estaciones.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SERVICIOS INTEGRALES -->
+    <section class="services" id="servicios">
+
+        <div class="section-title">
+            <small>Líneas de Servicios</small>
+            <h2>Soluciones de Alto Impacto Comercial</h2>
+            <p>
+                Acompañamiento integral desde la idea inicial hasta la optimización digital en empresas en marcha.
+            </p>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581091215367-9b6c00b3035a?auto=format&fit=crop&w=600&q=80" alt="Launchpad Puesta en Marcha" class="service-img">
+                <div class="service-content">
+                    <div class="number">01</div>
+                    <h3>Launchpad</h3>
+                    <h4>Nuevos Inversionistas (Puesta en marcha)</h4>
+                    <ul>
+                        <li>Ingeniería de Producto y Procesos.</li>
+                        <li>Evaluación de Proveedores.</li>
+                        <li>Diseño operativo y Layout.</li>
+                        <li>Manuales Operativos y Capacitación.</li>
+                        <li>Prueba de Producción.</li>
+                    </ul>
+                    <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20estoy%20interesado%20en%20el%20servicio%20Launchpad%20(Puesta%20en%20marcha)." target="_blank" class="btn btn-whatsapp" style="margin-top:auto; font-size:14px;">
+                        Consultar Launchpad
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=600&q=80" alt="Optimization Planta" class="service-img">
+                <div class="service-content">
+                    <div class="number">02</div>
+                    <h3>Optimización</h3>
+                    <h4>Empresas Establecidas (Reducción de Costos)</h4>
+                    <ul>
+                        <li>Diagnóstico de Eficiencia Operativa.</li>
+                        <li>Optimización y Estandarización.</li>
+                        <li>Control y Optimización de Mermas.</li>
+                        <li>Lean Manufacturing Simplificado.</li>
+                        <li>Implementación de KPIs Operativos.</li>
+                        <li>Gestión de Mantenimiento y confiabilidad.</li>
+                    </ul>
+                    <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Optimizaci%C3%B3n%20de%20Planta." target="_blank" class="btn btn-whatsapp" style="margin-top:auto; font-size:14px;">
+                        Consultar Optimización
+                    </a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Digital Core" class="service-img">
+                <div class="service-content">
+                    <div class="number">03</div>
+                    <h3>Digital Core</h3>
+                    <h4>Marketing & Transformación Digital</h4>
+                    <ul>
+                        <li>Diagnóstico e implementación (WEB).</li>
+                        <li>Impulso Digital (Branding + Web + Redes).</li>
+                        <li>Transformación Digital (CRM + Auto).</li>
+                        <li>Estrategia de Marketing Continuo.</li>
+                        <li>Posicionamiento de Marca y Leads.</li>
+                        <li>Alineación Ventas vs Capacidad.</li>
+                    </ul>
+                    <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20me%20interesa%20el%20servicio%20Digital%20Core." target="_blank" class="btn btn-whatsapp" style="margin-top:auto; font-size:14px;">
+                        Consultar Digital Core
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- METODO PASOD -->
+    <section class="paso" id="metodo">
+
+        <div class="section-title">
+            <small>Nuestra Metodología Propietaria</small>
+            <h2>El Método P.A.S.O.D.</h2>
+            <p>
+                Ruta estructurada para transformar capital e ideas en operaciones rentables y escalables.
+            </p>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="Metodología ASKI ENGINEERING en Acción" class="paso-banner">
+
+        <div class="paso-grid">
+
+            <div class="paso-card">
+                <div class="paso-letter">P</div>
+                <h3>Proyección</h3>
+                <p>
+                    Análisis del producto, dimensionamiento técnico de maquinaria y evaluación de factibilidad real.
+                </p>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-letter">A</div>
+                <h3>Aprovisionamiento</h3>
+                <p>
+                    Sourcing neutral de proveedores de equipos y negociación estratégica de materias primas (BOM).
+                </p>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-letter">S</div>
+                <h3>Secuencia</h3>
+                <p>
+                    Diseño de Layout eficiente, balanceo de flujos de trabajo y creación de manuales SOPs visuales.
+                </p>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-letter">O</div>
+                <h3>Optimización</h3>
+                <p>
+                    Acompañamiento en primera corrida, control de mermas, medición de KPIs y calibración de costos reales.
+                </p>
+            </div>
+
+            <div class="paso-card">
+                <div class="paso-letter">D</div>
+                <h3>Digitalización</h3>
+                <p>
+                    Integración de herramientas digitales, presencia web estratégica y automatización comercial del negocio.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- OPORTUNIDAD Y PROPUESTA DE VALOR -->
+    <section class="opportunity">
+        <div class="opportunity-content">
+            <h2>El Socio Técnico que tu Inversión Necesita</h2>
+            <p>
+                En <strong>ASKI ENGINEERING</strong> no dejamos informes en papel. Nos metemos al terreno junto a tu equipo para garantizar que cada unidad de capital invertida genere rentabilidad.
+            </p>
+
+            <div class="quote">
+                “Democratizamos la ingeniería de procesos y la digitalización para las PYMEs.”
+            </div>
+
+            <p style="font-size: 16px; color: var(--text-muted);">
+                Especializados en consultoría presencial y cobertura global bajo un modelo de acompañamiento híbrido.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- CLIENTES Y PERFILES -->
+    <section class="clients">
+
+        <div class="section-title">
+            <small>Segmentos Atendidos</small>
+            <h2>Diseñado para Inversionistas y PYMEs</h2>
+        </div>
+
+        <div class="client-grid">
+
+            <div class="client-card">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Inversor Empírico">
+                <div class="client-card-body">
+                    <h3>💼 El Inversor Empírico (Nuevos Negocios)</h3>
+                    <p>
+                        Comerciantes, profesionales e inversionistas con capital disponible que buscan ingresar al sector productivo (alimentos, cosmética, textil, manufactura ligera) de forma segura y sin cometer errores costosos de equipamiento.
+                    </p>
+                </div>
+            </div>
+
+            <div class="client-card">
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="Empresario Tradicional">
+                <div class="client-card-body">
+                    <h3>🏢 El Empresario Tradicional (Empresas Activas)</h3>
+                    <p>
+                        Dueños de PYMEs industriales o comerciales que sufren por la reducción de márgenes, desperdicio de materiales, falta de procesos y débil presencia digital.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CALL TO ACTION & SECCIÓN DE CONTACTO DIRECTO -->
+    <section class="cta" id="contacto">
+        <h2>¿Listo para Convertir tu Inversión en Rentabilidad?</h2>
+        <p>
+            Agenda hoy un Diagnóstico Preliminar en Planta o ponte en contacto directo con nuestro equipo de ingenieros.
+        </p>
+
+        <!-- Tarjetas en Cajitas para Contacto y Redes Sociales -->
+        <div class="contact-cards-container">
+            
+            <!-- WhatsApp 1 -->
+            <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="contact-card">
+                <div class="contact-card-icon wa">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                </div>
+                <div class="contact-card-title">WhatsApp Principal</div>
+                <div class="contact-card-value">+591 71281472</div>
+            </a>
+
+            <!-- WhatsApp 2 -->
+            <a href="https://wa.me/59169737253?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" class="contact-card">
+                <div class="contact-card-icon wa">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                </div>
+                <div class="contact-card-title">WhatsApp Secundario</div>
+                <div class="contact-card-value">+591 69737253</div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/askienginnering?stkn=MTNncms0MXF5OWY0YQ%3D%3D" target="_blank" class="contact-card">
+                <div class="contact-card-icon ig">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </div>
+                <div class="contact-card-title">Instagram</div>
+                <div class="contact-card-value">@askienginnering</div>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/19qpMnvVgC/" target="_blank" class="contact-card">
+                <div class="contact-card-icon fb">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+                <div class="contact-card-title">Facebook</div>
+                <div class="contact-card-value">Página Oficial</div>
+            </a>
+
+            <!-- Llamada Telefónica -->
+            <a href="tel:+59171281472" class="contact-card">
+                <div class="contact-card-icon tel">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="contact-card-title">Teléfono / Llamadas</div>
+                <div class="contact-card-value">71281472</div>
+            </a>
+
+            <!-- Correo Electrónico -->
+            <a href="mailto:contacto@askiengineering.com" class="contact-card">
+                <div class="contact-card-icon mail">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="contact-card-title">Correo Electrónico</div>
+                <div class="contact-card-value" style="font-size: 14px;">contacto@askiengineering.com</div>
+            </a>
+
+        </div>
+
+        <a href="https://wa.me/59171281472?text=Hola%20ASKI%20ENGINEERING,%20quisiera%20agendar%20un%20diagn%C3%B3stico%20operativo." target="_blank" class="btn btn-whatsapp" style="font-size: 18px; padding: 18px 40px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Enviar Consulta por WhatsApp Directo
+        </a>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    ASKI ENGINEERING
+                    <span>CONSULTORA OPERATIVA Y DIGITAL</span>
+                </div>
+                <p style="margin-top:10px; max-width:400px;">
+                    Consultora de Puesta en Marcha Operativa, Eficiencia de Procesos, Mantenimiento y Transformación Digital.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#metodo">Método P.A.S.O.D.</a>
+                <a href="https://instagram.com/askienginnering?stkn=MTNncms0MXF5OWY0YQ%3D%3D" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/share/19qpMnvVgC/" target="_blank">Facebook</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © 2026 ASKI ENGINEERING. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- SCRIPT JS PARA EL MENÚ DESPLEGABLE MÓVIL -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        // Alternar Menú Hamburguesa
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en cualquier enlace
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
